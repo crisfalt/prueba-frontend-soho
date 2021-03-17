@@ -16,28 +16,13 @@ export class ListProjectComponent implements OnInit {
   constructor( private projectService: ProjectService, private storage: StorageMap ) { }
 
   ngOnInit(): void {
-    console.log( this.projects.length );
-    this.getToken().then( () => {
-      this.loadProjects().then()
-    })
+    this.loadProjects().then()
   }
 
   loadProjects(): Promise<void> {
     return new Promise<void>( resolve => {
-      this.projectService.getProjects( this.token ).subscribe( ( projects ) => {
+      this.projectService.getProjectsPublic().subscribe( ( projects ) => {
         this.projects = projects
-        console.log( projects );
-        resolve()
-      });
-    })
-  }
-
-  getToken(): Promise<void> {
-    return new Promise<void>( resolve => {
-      /* Get token */
-      this.storage.watch('soho.token').subscribe(( token: string) => {
-        console.log( token );
-        this.token = token
         resolve()
       });
     })

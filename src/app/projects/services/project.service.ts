@@ -79,4 +79,14 @@ export class ProjectService {
       { headers }
     )
   }
+
+  getProjectsPublic(): Observable<ProjectModel[]> {
+    const headers = new HttpHeaders();
+    return this.http.get<Response>(
+      environment.url_endpoint + 'projects/list',
+      { headers }
+    ).pipe(
+      map( response => response.data )
+    );
+  }
 }

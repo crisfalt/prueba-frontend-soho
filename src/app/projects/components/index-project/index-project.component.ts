@@ -53,7 +53,6 @@ export class IndexProjectComponent implements OnInit {
     return new Promise<void>( resolve => {
       /* Get token */
       this.storage.watch('soho.token').subscribe(( token: string) => {
-        console.log( token );
         this.token = token
         resolve()
       });
@@ -61,7 +60,6 @@ export class IndexProjectComponent implements OnInit {
   }
 
   edit( id: number ): void {
-    console.log( id );
     this.router.navigate( [ '/project/edit/', id ] )
   }
 

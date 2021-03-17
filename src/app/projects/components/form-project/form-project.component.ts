@@ -67,7 +67,6 @@ export class FormProjectComponent implements OnInit {
     return new Promise<void>( resolve => {
       /* Get token */
       this.storage.watch('soho.token').subscribe(( token: string) => {
-        console.log( token );
         this.token = token
         resolve()
       });
@@ -76,7 +75,6 @@ export class FormProjectComponent implements OnInit {
 
   save(): void {
     this.project = this.projectForm.value
-    console.log( this.project );
     if ( this.projectId === null ) {
       this.projectService.create( this.project, this.token ).subscribe(
         ( response ) => {
