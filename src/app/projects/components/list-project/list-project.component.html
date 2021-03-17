@@ -1,0 +1,22 @@
+<ng-container *ngIf="projects.length > 0">
+  <section *ngFor="let project of projects; index as i" class="list-project" id="{{project.id}}">
+    <div class="contenedor-list-project" [id]="( ( i % 2 ) === 0 ) ? 'container-white' : 'container-red'">
+      <div class="image" *ngIf="( i % 2 ) === 0">
+        <img src="../../../../assets/images/fondo_blanco.png"
+             alt="Image"
+             class="image-project">
+      </div>
+      <div class="content">
+        <h3 [id]="( ( i % 2 ) === 0 ) ? 'title-white' : 'title-red'">{{project.code}}</h3>
+        <p [id]="( ( i % 2 ) === 0 ) ? 'subtitle-white' : 'subtitle-red'">{{project.name}}</p>
+        <p [id]="( ( i % 2 ) === 0 ) ? 'paragraph-white' : 'paragraph-red'">{{project.description}}</p>
+        <a href="" [id]="( ( i % 2 ) === 0 ) ? 'detail-white' : 'detail-red'">Ver detalles</a>
+      </div>
+      <div class="image" *ngIf="( i % 2 ) !== 0">
+        <img src="../../../../assets/images/fondo_rojo.png"
+             alt="Image"
+             class="image-project">
+      </div>
+    </div>
+  </section>
+</ng-container>

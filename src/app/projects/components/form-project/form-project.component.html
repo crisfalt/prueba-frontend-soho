@@ -1,0 +1,83 @@
+<!-- Toast messages -->
+<p-toast position="top-left"></p-toast>
+<!-- Confirmation dialog -->
+<p-confirmDialog #cd [style]="{width: '30vw'}" icon="pi pi-exclamation-triangle">
+  <p-footer>
+    <button type="button" pButton class="btn-secondary" label="Cancelar" (click)="cd.reject()"></button>
+    <button type="button" pButton class="btn-success" label="Si" (click)="cd.accept()"></button>
+  </p-footer>
+</p-confirmDialog>
+<p-card class="mt-2 col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <form [formGroup]="projectForm" (ngSubmit)="save()">
+    <div class="p-grid forms-grid">
+    <section>
+      <label for="code" class="col-2 font-weight-bold">Código</label>
+      <input type="text"
+             id="code"
+             formControlName="code"
+             class="ml-2 col-md-6 col-6 col-lg-6"
+             required
+             [ngClass]="'required'"
+             pInputText />
+      <div class="p-col mt-1" *ngIf="!projectForm.controls['code'].valid&&projectForm.controls['code'].dirty">
+        <p-message severity="error" text="El código es requerido."></p-message>
+      </div>
+    </section>
+    <section class="mt-1">
+      <label for="code" class="col-2 font-weight-bold">Nombre</label>
+      <input type="text"
+             id="name"
+             formControlName="name"
+             class="ml-2 col-md-6 col-6 col-lg-6"
+             required
+             [ngClass]="'required'"
+             pInputText />
+      <div class="col-12 mt-1" *ngIf="!projectForm.controls['name'].valid&&projectForm.controls['name'].dirty">
+        <p-message severity="error" text="El nombre es requerido."></p-message>
+      </div>
+    </section>
+    <section class="mt-1">
+      <label for="description" class="col-2 font-weight-bold">Descripción</label>
+      <textarea id="description"
+                [rows]="2"
+                class="ml-2 mt-4 col-md-6 col-6 col-lg-6"
+                formControlName="description"
+                [ngClass]="'required'"
+                autoResize="false"
+                pInputTextarea>
+      </textarea>
+      <div class="col-12 mt-1" *ngIf="!projectForm.controls['description'].valid&&projectForm.controls['description'].dirty">
+        <p-message severity="error" text="La descripción es requerida."></p-message>
+      </div>
+    </section>
+  </div>
+  <p-footer class="col-12">
+    <div class="ui-dialog-buttonpane ui-helper-clearfix p-col-12 text-center mt-2">
+      <button type="button"
+              class="btn-secondary mr-5"
+              label="Regresar"
+              icon="pi pi-arrow-left"
+              [routerLink]="['/project/index']"
+              pButton>
+      </button>
+      <button
+        class="btn-danger mr-5"
+        type="button"
+        pButton
+        [disabled]="projectId === null"
+        (click)="delete()"
+        label="Eliminar"
+        icon="pi pi-trash"
+        iconPos="left">
+      </button>
+      <button type="submit"
+              [disabled]="!projectForm.valid"
+              class="btn-success"
+              label="Guardar"
+              icon="pi pi-save"
+              pButton>
+      </button>
+    </div>
+  </p-footer>
+  </form>
+</p-card>
